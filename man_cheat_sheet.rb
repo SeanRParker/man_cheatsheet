@@ -6,6 +6,7 @@ def menu
   puts "3) Exit and leave you alone"
   user_input = gets.strip.to_i
   exit(0) if user_input == 3
+  puts "Thanks for stopping by! See you soon!" if user_input == 3
   puts "Did you not see the options?" if user_input.to_i > 3
   puts "Try entering a number this time wise guy!" if user_input == '0'
   user_input.to_i
