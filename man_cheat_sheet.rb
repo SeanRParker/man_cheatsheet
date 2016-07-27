@@ -1,3 +1,5 @@
+require 'pry'
+
 # @man_array = []
 def menu
   puts "--- Options ---"
@@ -5,21 +7,26 @@ def menu
   puts "2) Search"
   puts "3) Exit and leave you alone"
   user_input = gets.strip.to_i
-  exit(0) if user_input == 3
-  puts "Thanks for stopping by! See you soon!" if user_input == 3
+  # puts "Thanks for stopping by! See you soon!" if user_input == 3
+  # exit(0) if user_input == 3
   puts "Did you not see the options?" if user_input.to_i > 3
   puts "Try entering a number this time wise guy!" if user_input == '0'
   user_input.to_i
+  commands_library if user_input == 1
+  search if user_input == 2
+  puts "goodbye sucka!" if user_input == 3
+  exit(0) if user_input == 3
 end
 
 def search
   puts "Which command would you like to look up instructions for?"
-  cmd = gets.chomp
+  cmd = gets.strip
   puts `man #{cmd}`
   menu
 end
 
 def commands_library
+# binding.pry
   puts "Commands Library"
   puts "1) mv"
   puts "2) cp"
@@ -49,23 +56,27 @@ while true
       commands_library
     when 2
       search
+    when 3
+      puts "See ya!"
+      exit(0)
     else
       puts "Bad command or selection"
       menu
   end
-
-
-  case commands_library
-    when 1
-      puts `man mv`
-    when 2
-      puts `man cp`
-    when 3
-      puts `man mkdir`
-    when 4
-      puts `man touch`
-    when 5
-      puts `man nano`
-  end
-  menu
 end
+
+case commands_library
+  when 1
+    puts `man mv`
+  when 2
+    puts `man cp`
+  when 3
+    puts `man mkdir`
+  when 4
+    puts `man touch`
+  when 5
+    puts `man nano`
+end
+
+
+menu
